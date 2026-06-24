@@ -15,5 +15,5 @@
   margin: 0;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-family: var(--FonteTitulo);
-  color: var(--text-color);
+  color: var(--CorTexto);
 }
