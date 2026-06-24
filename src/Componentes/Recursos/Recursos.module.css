@@ -1,0 +1,95 @@
+.NomeSite {
+    font-family: var(--FonteTitulo);
+    font-size: 3.2rem;
+}
+
+.container {
+  width: 100%;
+  padding: 5rem 0;
+  background-color: var(--CorBG);
+  overflow: hidden;
+}
+
+
+.container h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--AzulEscuro);
+  margin-bottom: 3rem;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.card {
+  width: 18rem;
+  min-width: 18rem;
+  height: 16rem;
+
+  margin-right: 1.5rem;
+  padding: 1.8rem;
+
+  background-color: var(--AzulBebê);
+  border-radius: 1rem;
+
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--AzulDog);
+  margin: 0 0 0.8rem 0;
+  line-height: 1.2;
+  text-align: left;
+  font-family: var(--FonteBase);
+}
+
+.card p {
+  font-family: var(--FonteBase);
+  font-size: 1rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
+  text-align: left;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 15rem;
+    min-width: 15rem;
+    height: 14rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}

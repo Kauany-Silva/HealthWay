@@ -1,0 +1,28 @@
+.menu {
+    font-family: var(--FonteBase);
+    padding: 0.625rem 1.25rem;
+    transition: all 0.3s ease;
+    background-color: var(--CorBG);
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.menu li {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.375rem 0.625rem;
+    color: var(--CorTexto);
+    transition: all 0.25s ease;
+}
+
+.menuLista :hover {
+    transform: scale(1.05);
+    color: var(--AzulVibrante);
+}

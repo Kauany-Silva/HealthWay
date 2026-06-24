@@ -1,0 +1,19 @@
+.Cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.9375rem 1.25rem;
+  background-color: var(--CorBG);
+}
+
+.Cabecalho img {
+  width: clamp(2.5rem, 5vw, 3.5rem);
+  height: auto;
+}
+
+.Cabecalho h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: var(--FonteTitulo);
+  color: var(--text-color);
+}

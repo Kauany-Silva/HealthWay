@@ -1,0 +1,44 @@
+.mensagem {
+  position: fixed;
+
+  top: 2rem;
+  right: 2rem;
+
+  padding: 1rem 1.5rem;
+
+  border-radius: 1rem;
+
+  color: var(--AzulGelo);
+
+  font-family: var(--FonteBase);
+
+  z-index: 9999;
+
+  animation: aparecer 0.3s ease;
+
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
+}
+
+.sucesso {
+  background: var(--Verde);
+}
+
+.erro {
+  background: var(--Vermelho);
+}
+
+.aviso {
+  background: var(--Amarelo);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

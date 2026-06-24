@@ -1,0 +1,50 @@
+:root {
+--AzulGelo: #B3D9FF;
+--AzulSuave: #4DA6FF;
+--AzulRoyal: #0059B3;
+--AzulVibrante: #007BFF;
+--AzulDog: #1E90FF;
+--AzulBebê: #80BFFF;
+--AzulPolar: #E6F2FF;
+--AzulEscuro: #001D39;
+--Cinza: #161616;
+--Verde: #2ECC71;
+--Vermelho:#E74C3C;
+--Amarelo: #F39C12
+
+--CorBG: var(--AzulGelo);    /* fundo padrão */
+--CorTexto: var(--aEscuro); /* cor texto padrão */
+--TamanhoFonte: 1rem;
+--FonteTitulo: 'Allura-Regular';
+--FonteBase: Verdana, sans-serif;
+--escala-fonte: 1;
+
+}
+
+@font-face {
+  font-family: 'Allura-Regular';
+  src: url('./Assets/Fonte/Allura-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* melhora performance */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--CorBG);
+}
+
+body, input, textarea, button {
+    font-size: var(--TamanhoFonte);
+    font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, li, label, button, input, textarea {
+    font-size: calc(1rem*var(--escala-fonte));
+}
