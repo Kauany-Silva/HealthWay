@@ -31,6 +31,7 @@ const Dashboard= () => {
         <h1> 
         Bem Vindo, {usuario?.usu_nome}
         </h1>
+        <h2> teste</h2>
 
         </div>
         </div>
