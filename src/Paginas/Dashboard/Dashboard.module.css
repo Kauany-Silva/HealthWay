@@ -6,7 +6,7 @@
 
 .Dashboard h1 {
     color: var(--AzulEscuro);
-    font-size: 2em;
+    font-size: 2rem;
     font-family: var(--FonteBase);
 }
 
