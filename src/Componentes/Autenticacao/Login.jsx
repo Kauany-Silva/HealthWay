@@ -64,6 +64,11 @@ const Login = () => {
         return;
       }
 
+      localStorage.setItem(
+  'usuario',
+  JSON.stringify(dados.usuario)
+);
+
       setTextoMensagem(
         'Login realizado com sucesso!'
       );

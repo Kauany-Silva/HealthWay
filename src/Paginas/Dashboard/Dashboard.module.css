@@ -1,0 +1,22 @@
+.Dashboard {
+    padding: 2rem 2rem 2rem 6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.Dashboard h1 {
+    color: var(--AzulEscuro);
+    font-size: 2em;
+    font-family: var(--FonteBase);
+}
+
+.boasVindas {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo img {
+  width: 5.5rem;
+  height: auto;
+}

@@ -116,6 +116,7 @@
 
 .formulario input,
 .formulario textarea {
+  color: var(--CorTexto);
   width: 100%;
   font-family: var(--FonteBase);
   background-color: var(--AzulSuave);
@@ -129,7 +130,6 @@
 }
 
 .formulario textarea {
-  color: var(--AzulEscuro);
   resize: none;
   height: 12rem;
 }
@@ -152,6 +152,12 @@
   cursor: pointer;
 
   transition: .3s;
+}
+
+.formulario input::placeholder,
+.formulario textarea::placeholder {
+  color: var(--CorTexto);
+  opacity: 1;
 }
 
 .formulario button:hover {

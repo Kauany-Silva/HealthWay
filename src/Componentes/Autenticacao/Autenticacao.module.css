@@ -11,17 +11,12 @@
 
 .card {
   width: 100%;
-  max-width: 30rem;
-
-  padding: 2.5rem;
-
+  max-width: 38rem;
+  padding: 2rem 2.5rem;
   border-radius: 2rem;
-
   background: rgba(255, 255, 255, 0.08);
-
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-
   border: 0.0625rem solid rgba(255,255,255,0.15);
 
   box-shadow:
@@ -81,7 +76,7 @@
 }
 
 .form input::placeholder {
-  color: rgba(255,255,255,0.9);
+  color: var(--AzulGelo);
 }
 
 .form button {
@@ -97,7 +92,7 @@
 
   background: var(--AzulEscuro);
 
-  color: white;
+  color: var(--AzulGelo);
 
   font-family: var(--FonteBase);
   font-size: 1rem;
@@ -115,13 +110,13 @@
 
   text-align: center;
 
-  color: white;
+  color: var(--AzulGelo);
 
   font-family: var(--FonteBase);
 }
 
 .link a {
-  color: white;
+  color: var(--AzulGelo);
   text-decoration: underline;
 }
 

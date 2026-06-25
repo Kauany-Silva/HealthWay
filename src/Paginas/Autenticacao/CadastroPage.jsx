@@ -11,7 +11,7 @@ const CadastroPage = () => {
         </video>
       </section>
 
-    <div /*className={style.Cadastro} */>
+    <div>
       <Cadastro/>
     </div>
     </div>
