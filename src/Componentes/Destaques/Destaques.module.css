@@ -1,0 +1,66 @@
+.container {
+  margin-top: 2rem;
+}
+
+.container h2 {
+  margin-bottom: 1rem;
+
+  color: var(--AzulEscuro);
+
+  font-size: 2rem;
+}
+
+.slide {
+  min-height: 20rem;
+
+  border-radius: 2rem;
+
+  overflow: hidden;
+
+  display: flex;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--AzulRoyal) 0%,
+      var(--AzulVibrante) 45%,
+      transparent 100%
+    );
+}
+
+.texto {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 3rem;
+
+  color: var(--AzulGelo);
+}
+
+.texto h3 {
+  font-size: 2rem;
+
+  margin-bottom: 1rem;
+}
+
+.texto p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.imagem {
+  flex: 1.2;
+}
+
+.imagem img {
+    
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  
+}

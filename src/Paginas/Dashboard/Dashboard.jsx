@@ -2,6 +2,7 @@ import { MenuLateral } from "../../Componentes"
 import { Navigate } from 'react-router-dom';
 
 import Logo from "../../Assets/Imagens/Logo.png"
+import { Destaques } from "../../Componentes";
 
 import style from "./Dashboard.module.css"
 
@@ -33,6 +34,8 @@ const Dashboard= () => {
         </h1>
 
         </div>
+
+        <Destaques/>
         </div>
         </>
     )
