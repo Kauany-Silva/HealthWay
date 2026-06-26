@@ -1,4 +1,4 @@
-import { MenuLateral } from "../../Componentes"
+import { AcessoRapido, MenuLateral } from "../../Componentes"
 import { Navigate } from 'react-router-dom';
 
 import Logo from "../../Assets/Imagens/Logo.png"
@@ -36,6 +36,7 @@ const Dashboard= () => {
         </div>
 
         <Destaques/>
+        <AcessoRapido/>
         </div>
         </>
     )

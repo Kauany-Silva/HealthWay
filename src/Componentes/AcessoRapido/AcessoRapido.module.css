@@ -1,0 +1,101 @@
+.container {
+    margin-top: 2.5rem;
+}
+
+.container h2{
+    font-family: var(--FonteBase);
+    color: var(--AzulEscuro);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cartoes{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+}
+
+.cartao{
+    background: var(--AzulPolar);
+
+    border-radius: 1.3rem;
+
+    padding: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    cursor: pointer;
+
+    box-shadow: 0 .4rem 1.2rem rgba(0,0,0,.08);
+
+    transition: .25s;
+}
+
+.cartao:hover{
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 .9rem 2rem rgba(0,0,0,.14);
+
+    background: linear-gradient(
+        135deg,
+        var(--AzulPolar),
+        white
+    );
+}
+
+.icone{
+
+    width: 4.3rem;
+    height: 4.3rem;
+
+    min-width: 4.3rem;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        var(--AzulVibrante),
+        var(--AzulRoyal)
+    );
+
+    color: var(--AzulPolar);
+
+    font-size: 1.6rem;
+
+    transition: .3s;
+}
+
+.cartao:hover .icone{
+    transform: rotate(-10deg) scale(1.08);
+}
+
+.cartao h3{
+
+    color: var(--AzulEscuro);
+
+    font-size: 1.15rem;
+
+    margin-bottom: .45rem;
+}
+
+.cartao p{
+
+    color: var(--Cinza);
+
+    line-height: 1.45;
+}
+
+@media (max-width:900px){
+
+    .cartoes{
+        grid-template-columns: 1fr;
+    }
+
+}
