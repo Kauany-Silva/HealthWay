@@ -1,4 +1,5 @@
 import style from './MenuInicio.module.css';
+import '../../Paginas/Landing';
 
 const MenuInicio = () => {
   const scrollToSection = (id) => {
