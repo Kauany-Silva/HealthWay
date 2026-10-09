@@ -1,6 +1,5 @@
 import DestaqueConsulta from "../Assets/Imagens/DestaqueConsulta.jpeg"
 import DestaqueCelular from "../Assets/Imagens/DestaqueCelular.jpeg"
-s/*
 import DestaqueAgua from "../Assets/Imagens/DestaqueAgua.jpeg"
 import DestaqueMastigacao from "../Assets/Imagens/DestaqueMastigacao.jpeg"
 import DestaqueRefeicao from "../Assets/Imagens/DestaqueRefeicao.jpeg"
@@ -8,7 +7,7 @@ import DestaqueHigiene from "../Assets/Imagens/DestaqueHigiene.jpeg"
 import DestaqueFoneOuvido from "../Assets/Imagens/DestaqueFoneOuvido.jpeg"
 import DestaqueProtetorSolar from "../Assets/Imagens/DestaqueProtetorSolar.jpeg"
 import DestaqueMedicacao from "../Assets/Imagens/DestaqueMedicacao.jpeg"
-import DestaqueVitaminaD from "../Assets/Imagens/DestaqueVitaminaD.jpeg" */
+import DestaqueVitaminaD from "../Assets/Imagens/DestaqueVitaminaD.jpeg"
 
 //dicas:
 
@@ -28,7 +27,7 @@ const DadosDestaques = [
       'Evite usar o celular pelo menos 30 minutos antes de dormir para melhorar a qualidade do sono.',
     imagem: DestaqueCelular,
   },
-/*
+
   {
     id: 3,
     titulo: 'Tome bastante água',
@@ -91,7 +90,7 @@ const DadosDestaques = [
     descricao:
       'A exposição ao sol da manhã por alguns minutos contribui para a produção de vitamina D e para a regulação do sono.',
     imagem: DestaqueVitaminaD,
-  }, */
+  }, 
 ];
 
 export {DadosDestaques}
