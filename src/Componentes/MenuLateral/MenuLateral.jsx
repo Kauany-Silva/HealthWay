@@ -44,14 +44,15 @@ const MenuLateral = () => {
           <span>Início</span>
         </Link>
 
-       {/* <Link
-          to="/vacinacao"
+       <Link
+          to="/dashboard/vacinacao"
           className={styles.item}
         >
           <FaSyringe />
           <span>Carteira de Vacinação</span>
         </Link>
 
+{/* 
         <Link
           to="/consultas"
           className={styles.item}

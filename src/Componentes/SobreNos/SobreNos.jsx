@@ -5,9 +5,9 @@ import { FaClockRotateLeft, FaHeartPulse, FaCircleNodes } from 'react-icons/fa6'
 import imagemSaude from '../../Assets/Imagens/ImagemSobreNos.jpeg';
 import videoHealthWay from '../../Assets/Videos/VideoSobreNos.mp4';
 
-const SobreNos = () => {
+const SobreNos = ({id}) => {
   return (
-    <section className={style.secao}>
+    <section id={id}className={style.secao}>
       <span className={style.selo}>
         ● Sobre Nós
       </span>

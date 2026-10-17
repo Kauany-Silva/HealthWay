@@ -3,9 +3,9 @@ import videoHero from "../../Assets/Videos/hero.mp4";
 import { TypeAnimation } from "react-type-animation";
 import { Link } from "react-router-dom";
 
-const Hero = () => {
+const Hero = ({id}) => {
   return (
-    <section className={style.hero}>
+    <section id={id} className={style.hero}>
       <video autoPlay loop muted playsInline className={style.VideoFundo}>
         <source src={videoHero} type="video/mp4" />
       </video>
@@ -27,7 +27,7 @@ const Hero = () => {
         </h2>
 
         <Link to="/cadastro" className={style.botao}>
-          Comece Agora
+          <h1 className={style.textobotao}>Comece Agora</h1>
         </Link>
 
       </div>

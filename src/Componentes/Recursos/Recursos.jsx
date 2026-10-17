@@ -31,9 +31,9 @@ const recursos = [
   }
 ];
 
-const Recursos = () => {
+const Recursos = ({id}) => {
   return (
-    <section className={styles.container}>
+    <section id={id} className={styles.container}>
       <h2>Recursos da <span className={styles.NomeSite}>Health Way</span></h2>
 
       <div className={styles.slider}>
