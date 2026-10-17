@@ -12,9 +12,9 @@ const Destaques = () => {
   return (
     <section className={style.container}>
 
-      <h2>
+      <h1>
         Destaques do mês
-      </h2>
+      </h1>
 
       <Swiper
         modules={[Autoplay, Pagination]}

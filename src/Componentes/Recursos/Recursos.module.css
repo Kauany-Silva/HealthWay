@@ -10,7 +10,6 @@
   overflow: hidden;
 }
 
-
 .container h2 {
   text-align: center;
   font-size: 2.5rem;
@@ -33,7 +32,7 @@
 .card {
   width: 18rem;
   min-width: 18rem;
-  height: 16rem;
+  height: 17rem;
 
   margin-right: 1.5rem;
   padding: 1.8rem;
@@ -49,11 +48,37 @@
   justify-content: flex-start;
 }
 
+/* Controla a linha do ícone + título */
+.headerCard {
+  display: flex;
+  width: 100%;
+  align-items: center; /* Alinha o meio do ícone com o meio do texto */
+  justify-content: flex-start; /* Mantém o título do lado do ícone */
+  margin-bottom: 1rem; /* Espaço antes de começar a descrição */
+}
+
+/* Bolinha azul ao redor do ícone */
+.iconContainer {
+  width: 2.8rem;
+  height: 2.8rem;
+  min-width: 2.8rem; /* Evita que a bolinha "amasse" se o texto for longo */
+  min-height: 2.8rem;
+  
+  background-color: var(--AzulEscuro); 
+  color: var(--AzulPolar); 
+  border-radius: 50%; /* círculo perfeito */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card h3 {
-  font-size: 1.35rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--AzulDog);
-  margin: 0 0 0.8rem 0;
+  color: var(--AzulEscuro);
+  margin: 0;
+  margin-left: 0.8rem; /* Dá espaço entre a bolinha do ícone e o início do texto */
   line-height: 1.2;
   text-align: left;
   font-family: var(--FonteBase);
@@ -62,7 +87,7 @@
 .card p {
   font-family: var(--FonteBase);
   font-size: 1rem;
-  color: #4a4a4a;
+  color: var(--Cinza);
   line-height: 1.6;
   margin: 0;
   text-align: left;
@@ -91,5 +116,12 @@
 
   .card p {
     font-size: 0.95rem;
+  }
+  
+  .iconContainer {
+    width: 2.4rem;
+    height: 2.4rem;
+    min-width: 2.4rem;
+    min-height: 2.4rem;
   }
 }

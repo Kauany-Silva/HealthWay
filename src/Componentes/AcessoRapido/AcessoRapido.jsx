@@ -15,13 +15,13 @@ const AcessoRapido = () => {
   return (
    <section className={style.container}>
 
-    <h2>Acesso Rápido</h2>
+    <h1>Acesso Rápido</h1>
 
     <div className={style.cartoes}>
 
         <div
             className={style.cartao}
-            onClick={() => navigate("/vacinacao")}
+            onClick={() => navigate("/dashboard/vacinacao")}
         >
 
             <div className={style.icone}>
