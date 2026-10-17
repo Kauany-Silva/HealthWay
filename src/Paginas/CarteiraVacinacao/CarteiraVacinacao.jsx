@@ -8,7 +8,7 @@ const CarteiraVacinacao= () => {
 
     return (
         <>
-        <h1 className={style.titulo}> MinhaCarteira de Vacinação</h1>
+        <h1 className={style.titulo}> Minha Carteira de Vacinação</h1>
         </>
     )
     
