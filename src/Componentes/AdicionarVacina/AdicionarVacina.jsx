@@ -1,42 +1,60 @@
 import styles from './AdicionarVacina.module.css';
 
-import { DadosVacinas } from '../../Dados/DadosVacinas';
+import Logo from '../../Assets/Imagens/Logo.png';
 
-const AdicionarVacina = ({ fechar }) => {
+import { DadosVacinas } from '../../Dados/DadosVacinas';
+import { DadosDoses } from '../../Dados/DadosDoses';
+
+const AdicionarVacina = ({ fechar, salvar }) => {
+    const handleSubmit = (evento) => {
+        evento.preventDefault();
+
+        const formulario = evento.currentTarget;
+        const dados = new FormData(formulario);
+
+        const novaVacina = {
+            nome: dados.get('vacina'),
+            data: dados.get('data'),
+            idade: dados.get('idade').trim(),
+            dose: dados.get('dose'),
+        };
+
+        salvar(novaVacina);
+        formulario.reset();
+    };
+
     return (
         <div className={styles.fundo}>
             <div className={styles.container}>
                 <h2>Adicionar Vacina</h2>
 
-                <form>
+                <div className={styles.logo}>
+                    <img src={Logo} alt="Logo Health Way" />
+                </div>
+
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="vacina">
                         Nome da vacina
                     </label>
 
-                    <select id="vacina" name="vacina" required defaultValue="">
-                        <label htmlFor="vacina">
-    Nome da vacina
-</label>
+                    <select
+                        id="vacina"
+                        name="vacina"
+                        required
+                        defaultValue=""
+                    >
+                        <option value="" disabled>
+                            Selecione uma vacina
+                        </option>
 
-<select
-    id="vacina"
-    name="vacina"
-    required
-    defaultValue=""
->
-    <option value="" disabled>
-        Selecione uma vacina
-    </option>
-
-    {DadosVacinas.map((vacina) => (
-        <option
-            key={vacina.id}
-            value={vacina.nome}
-        >
-            {vacina.nome}
-        </option>
-    ))}
-</select>
+                        {DadosVacinas.map((vacina) => (
+                            <option
+                                key={vacina.id}
+                                value={vacina.nome}
+                            >
+                                {vacina.nome}
+                            </option>
+                        ))}
                     </select>
 
                     <label htmlFor="data">
@@ -75,11 +93,15 @@ const AdicionarVacina = ({ fechar }) => {
                         <option value="" disabled>
                             Selecione o tipo de dose
                         </option>
-                        <option value="Dose única">Dose única</option>
-                        <option value="1ª dose">1ª dose</option>
-                        <option value="2ª dose">2ª dose</option>
-                        <option value="3ª dose">3ª dose</option>
-                        <option value="Reforço">Reforço</option>
+
+                        {DadosDoses.map((dose) => (
+                            <option
+                                key={dose.id}
+                                value={dose.nome}
+                            >
+                                {dose.nome}
+                            </option>
+                        ))}
                     </select>
 
                     <div className={styles.acoes}>

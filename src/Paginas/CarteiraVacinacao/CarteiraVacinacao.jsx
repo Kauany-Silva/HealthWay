@@ -8,7 +8,7 @@ const CarteiraVacinacao= () => {
 
     return (
         <>
-        <Carteira />
+        <Carteira /> 
         </>
     )
     

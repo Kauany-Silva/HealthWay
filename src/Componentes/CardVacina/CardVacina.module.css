@@ -1,0 +1,179 @@
+
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem 2rem 1rem 1.5rem;
+    overflow: hidden;
+    background-color: var(--AzulPolar);
+    border: 1px solid var(--AzulRoyal);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgb(0 50 100 / 40%);
+}
+
+/* Faixa azul na lateral */
+.destaque {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--AzulEscuro);
+}
+
+/* Nome e descrição */
+.informacoesVacina {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 220px;
+}
+
+.iconeVacina {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background-color: var(--AzulEscuro);
+    color: var(--AzulPolar);
+    border-radius: 50%;
+    font-size: 2.5rem;
+}
+
+.descricao {
+    min-width: 0;
+}
+
+.descricao h3 {
+    margin-bottom: 0.4rem;
+    color: var(--AzulEscuro);
+    font-size: 1rem;
+    font-family: var(--FonteBase);
+}
+
+.descricao p {
+    max-width: 300px;
+    color: var(--Cinza);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Informações da vacinação */
+.detalhes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1.25rem;
+    flex: 1.3;
+    padding: 1rem;
+    background-color:  var(--AzulGelo);
+    border-radius: 0.85rem;
+}
+
+.detalhe {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+
+.icone {
+    color: var(--AzulRoyal);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.detalhe div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.rotulo {
+    color: var(--Cinza);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.detalhe strong {
+    color: var(--Cinza);
+    font-size: 0.85rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* Seta à direita */
+.seta {
+    flex-shrink: 0;
+    color: var(--AzulSuave);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 900px) {
+    .card {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .informacoesVacina {
+        flex-basis: 100%;
+    }
+
+    .detalhes {
+        flex-basis: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .detalhe {
+        flex: 1;
+    }
+
+    .seta {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .informacoesVacina {
+        min-width: 0;
+        padding-right: 1rem;
+    }
+
+    .iconeVacina {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+    }
+
+    .detalhes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .detalhe {
+        flex: auto;
+    }
+
+    .rotulo {
+        white-space: normal;
+    }
+}
