@@ -1,13 +1,13 @@
+
 import styles from './CardVacina.module.css';
 
-import { DadosVacinas } from '../../Dados/DadosVacinas';
-
-import { FaSyringe, FaCalendarDay, FaUserPlus } from 'react-icons/fa';
+import {
+    FaSyringe,
+    FaCalendarDay,
+    FaUserPlus
+} from 'react-icons/fa';
 
 const CardVacina = ({ vacina }) => {
-    const dadosVacina = DadosVacinas.find(
-        (item) => item.nome === vacina.nome
-    );
 
     if (!vacina) {
         return null;
@@ -16,7 +16,9 @@ const CardVacina = ({ vacina }) => {
     const formatarData = (data) => {
         if (!data) return 'Não informada';
 
-        const [ano, mes, dia] = data.split('-');
+        const dataFormatada = new Date(data).toISOString().split('T')[0];
+        const [ano, mes, dia] = dataFormatada.split('-');
+
         return `${dia}/${mes}/${ano}`;
     };
 
@@ -26,14 +28,14 @@ const CardVacina = ({ vacina }) => {
 
             <div className={styles.informacoesVacina}>
                 <div className={styles.iconeVacina}>
-                    < FaSyringe />
+                    <FaSyringe />
                 </div>
 
                 <div className={styles.descricao}>
-                    <h3>{vacina.nome}</h3>
+                    <h3>{vacina.nome_vacina || vacina.nome}</h3>
 
                     <p>
-                        {dadosVacina?.descricao || 'Informações sobre esta vacina.'}
+                        {vacina.descricao || 'Informações sobre esta vacina.'}
                     </p>
                 </div>
             </div>
@@ -50,7 +52,9 @@ const CardVacina = ({ vacina }) => {
                         </span>
 
                         <strong>
-                            {formatarData(vacina.data)}
+                            {formatarData(
+                                vacina.data_aplicacao || vacina.data
+                            )}
                         </strong>
                     </div>
                 </div>
@@ -66,14 +70,14 @@ const CardVacina = ({ vacina }) => {
                         </span>
 
                         <strong>
-                            {vacina.idade}
+                            {vacina.idade_na_aplicacao || vacina.idade}
                         </strong>
                     </div>
                 </div>
 
                 <div className={styles.detalhe}>
                     <span className={styles.icone}>
-
+                        <FaSyringe />
                     </span>
 
                     <div>
@@ -82,7 +86,7 @@ const CardVacina = ({ vacina }) => {
                         </span>
 
                         <strong>
-                            {vacina.dose}
+                            {vacina.nome_dose || vacina.dose}
                         </strong>
                     </div>
                 </div>
