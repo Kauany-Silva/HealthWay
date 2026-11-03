@@ -1,9 +1,9 @@
 import styles from './Contato.module.css';
 import Mascote from '../../Assets/Imagens/HelthinhoFeliz.png';
 
-const Contato = () => {
+const Contato = ({id}) => {
   return (
-    <section className={styles.contato}>
+    <section id={id} className={styles.contato}>
       <div className={styles.info}>
 
         <h2>Contato</h2>

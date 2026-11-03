@@ -15,7 +15,7 @@
 
   background: var(--AzulSuave);
 
-  color: #052d58;
+  color: var(--AzulEscuro);
 
   font-size: 1rem;
   font-weight: 600;
@@ -36,7 +36,7 @@
   font-size: 4rem;
   line-height: 1.1;
 
-  color: #111;
+  color: var(--Cinza);
 }
 
 .textos {
@@ -52,7 +52,7 @@
   font-size: 1rem;
   line-height: 1.8;
 
-  color: #222;
+  color: var(--Cinza);
 }
 
 .cartoes {
@@ -73,7 +73,7 @@
 
   border-radius: 1.25rem;
 
-  background: #7db7f1;
+  background: var(--AzulBebê);
 
   box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.12);
 }
@@ -88,9 +88,9 @@
   justify-content: center;
   align-items: center;
 
-  background: #002b57;
+  background: var(--AzulEscuro);
 
-  color: white;
+  color: var(--AzulPolar);
 
   font-size: 2rem;
   font-weight: 700;
@@ -100,7 +100,7 @@
 
 .cartao h3 {
   margin: 0 0 0.4rem;
-  color: #002b57;
+  color: var(--AzulEscuro);
 }
 
 .cartao p {
@@ -152,8 +152,7 @@
 
   z-index: 2;
 
-  border: 0.8rem solid #d9ebff;
-
+  border: 0.8rem solid var(--AzulPolar);
   box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.15);
 }
 

@@ -1,46 +1,46 @@
-import { AcessoRapido, MenuLateral } from "../../Componentes"
-import { Navigate } from 'react-router-dom';
+import { AcessoRapido, MenuLateral, Destaques } from "../../Componentes";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import Logo from "../../Assets/Imagens/Logo.png"
-import { Destaques } from "../../Componentes";
+import Logo from "../../Assets/Imagens/Logo.png";
+import style from "./Dashboard.module.css";
 
-import style from "./Dashboard.module.css"
-
-
-const Dashboard= () => {
-
-    const usuario = JSON.parse(
-    localStorage.getItem('usuario')
+const Dashboard = () => {
+  const usuario = JSON.parse(
+    localStorage.getItem("usuario")
   );
 
+  const location = useLocation();
+
   if (!usuario) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
-    return (
+  const estaNaCarteira = location.pathname === "/dashboard/vacinacao";
+
+  return (
+    <div className={style.Dashboard}>
+      <MenuLateral />
+
+      {estaNaCarteira ? (
+        <Outlet />
+      ) : (
         <>
-        <div className={style.Dashboard}>
+          <div className={style.boasVindas}>
+            <div className={style.logo}>
+              <img src={Logo} alt="Logo Health Way" />
+            </div>
 
-            <MenuLateral/>
-        
-        <div className={style.boasVindas}>
+            <h1>
+              Bem-vindo, {usuario?.usu_nome}
+            </h1>
+          </div>
 
-        <div className={style.logo}>
-            <img src={Logo} alt="Logo Health Way" />
-        </div>
-                  
-        <h1> 
-        Bem Vindo, {usuario?.usu_nome}
-        </h1>
-
-        </div>
-
-        <Destaques/>
-        <AcessoRapido/>
-        </div>
+          <Destaques />
+          <AcessoRapido />
         </>
-    )
-    
-}
+      )}
+    </div>
+  );
+};
 
-export {Dashboard}
+export { Dashboard };
