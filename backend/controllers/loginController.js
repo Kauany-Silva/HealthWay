@@ -1,6 +1,8 @@
 
 import db from '../db.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 export const realizarLogin = (req, res) => {
     const { email, senha } = req.body;
@@ -48,7 +50,7 @@ export const realizarLogin = (req, res) => {
                 senha,
                 usuario.senha_hash
             );
-            
+
             if (!senhaCorreta) {
                 return res.status(401).json({
                     success: false,
@@ -56,13 +58,24 @@ export const realizarLogin = (req, res) => {
                 });
             }
 
-            // Não enviar o hash da senha para o frontend
+            // Gerar token JWT
+            const token = jwt.sign(
+                {
+                    id_usuario: usuario.id_usuario,
+                    tipo_usuario: usuario.tipo_usuario
+                },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' }
+            );
+
+            // Não enviar o hash da senha
             delete usuario.senha_hash;
 
             return res.status(200).json({
                 success: true,
                 message: 'Login realizado com sucesso!',
-                usuario
+                usuario,
+                token
             });
 
         } catch (erro) {

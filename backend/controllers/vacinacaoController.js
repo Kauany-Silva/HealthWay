@@ -4,15 +4,16 @@ import db from '../db.js';
 // Salvar uma vacinação
 export const salvarVacinacao = (req, res) => {
     const {
-        id_usuario,
         id_vacina,
         id_dose,
         data_aplicacao,
         idade_na_aplicacao
     } = req.body;
 
+    // Identificação obtida pelo token
+    const id_usuario = req.usuario.id_usuario;
+
     if (
-        !id_usuario ||
         !id_vacina ||
         !id_dose ||
         !data_aplicacao ||
@@ -58,16 +59,9 @@ export const salvarVacinacao = (req, res) => {
     );
 };
 
-// Listar vacinações de um usuário
+// Listar vacinações do usuário autenticado
 export const listarVacinacoes = (req, res) => {
-    const { id_usuario } = req.query;
-
-    if (!id_usuario) {
-        return res.status(400).json({
-            success: false,
-            message: 'Usuário não informado.'
-        });
-    }
+    const id_usuario = req.usuario.id_usuario;
 
     const sql = `
         SELECT

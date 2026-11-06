@@ -8,7 +8,7 @@ import { CardVacina } from '../CardVacina/CardVacina';
 import { useAuth } from '../../Context/AuthContext';
 
 const Carteira = () => {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
 
     const [modalAberto, setModalAberto] = useState(false);
     const [vacinas, setVacinas] = useState([]);
@@ -21,8 +21,13 @@ const Carteira = () => {
 
             try {
                 const resposta = await fetch(
-                    `http://localhost:3001/vacinacao?id_usuario=${user.id_usuario}`
-                );
+                'http://localhost:3001/vacinacao',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
 
                 const dados = await resposta.json();
 
@@ -44,22 +49,20 @@ const Carteira = () => {
     const adicionarVacina = async (novaVacina) => {
         try {
             const resposta = await fetch(
-                'http://localhost:3001/vacinacao',
-                {
+                'http://localhost:3001/vacinacao', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id_usuario: user.id_usuario,
-                        id_vacina: novaVacina.id_vacina,
-                        id_dose: novaVacina.id_dose,
-                        data_aplicacao: novaVacina.data,
-                        idade_na_aplicacao: novaVacina.idade
-                    })
-                }
-            );
-
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            id_vacina: novaVacina.id_vacina,
+            id_dose: novaVacina.id_dose,
+            data_aplicacao: novaVacina.data,
+            idade_na_aplicacao: novaVacina.idade
+        })
+    }
+);
             const dados = await resposta.json();
 
             if (!resposta.ok) {
@@ -67,9 +70,14 @@ const Carteira = () => {
             }
 
             // Atualizar a lista com os dados do banco
-            const respostaLista = await fetch(
-                `http://localhost:3001/vacinacao?id_usuario=${user.id_usuario}`
-            );
+           const respostaLista = await fetch(
+    'http://localhost:3001/vacinacao',
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+);
 
             const dadosLista = await respostaLista.json();
 

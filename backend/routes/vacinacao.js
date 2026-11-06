@@ -1,3 +1,4 @@
+
 import express from 'express';
 
 import {
@@ -5,9 +6,11 @@ import {
     listarVacinacoes
 } from '../controllers/vacinacaoController.js';
 
+import { autenticar } from '../middlewares/autenticar.js';
+
 const router = express.Router();
 
-router.post('/', salvarVacinacao);
-router.get('/', listarVacinacoes);
+router.post('/', autenticar, salvarVacinacao);
+router.get('/', autenticar, listarVacinacoes);
 
 export default router;

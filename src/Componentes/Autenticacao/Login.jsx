@@ -9,7 +9,7 @@ import styles from './Autenticacao.module.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, setToken } = useAuth();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,7 +44,7 @@ const Login = () => {
 
       const dados = await resposta.json();
 
-      if (!resposta.ok || !dados.success || !dados.usuario) {
+      if (!resposta.ok || !dados.success || !dados.usuario || !dados.token) {
         setTextoMensagem('Email ou senha inválidos.');
         setTipoMensagem('erro');
         setMostrarMensagem(true);
@@ -53,6 +53,7 @@ const Login = () => {
 
       // Atualiza o contexto de autenticação
       setUser(dados.usuario);
+      setToken(dados.token);
 
       // Mantém compatibilidade com o Dashboard existente
       localStorage.setItem(
