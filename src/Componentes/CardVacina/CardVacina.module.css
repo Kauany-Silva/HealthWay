@@ -7,14 +7,13 @@
     width: 100%;
     min-height: 120px;
     padding: 1rem 2rem 1rem 1.5rem;
-    overflow: hidden;
+    overflow: visible;
     background-color: var(--AzulPolar);
     border: 1px solid var(--AzulRoyal);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-2px);
     box-shadow: 0 6px 18px rgb(0 50 100 / 40%);
 }
 
@@ -77,7 +76,7 @@
     gap: 1.25rem;
     flex: 1.3;
     padding: 1rem;
-    background-color:  var(--AzulGelo);
+    background-color: var(--AzulGelo);
     border-radius: 0.85rem;
 }
 
@@ -114,13 +113,65 @@
     overflow-wrap: anywhere;
 }
 
+/* Menu da seta */
+.menuContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 20;
+}
+
 /* Seta à direita */
 .seta {
     flex-shrink: 0;
+    border: none;
+    background: transparent;
     color: var(--AzulSuave);
-    font-size: 2rem;
+    font-size: 32px;
     line-height: 1;
+    padding: 5px 12px;
     cursor: pointer;
+}
+
+.seta:hover {
+    color: var(--AzulRoyal);
+}
+
+/* Menu de editar e excluir */
+.menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    width: 180px;
+    background: var(--AzulPolar);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+}
+
+.menu button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 6px;
+    color: var(--Cinza);
+    white-space: nowrap;
+}
+
+.menu button:hover {
+    background: var(--AzulVibrante);
+}
+
+.menu button:last-child {
+    color: var(--Cinza);
 }
 
 /* Ajuste para telas menores */
@@ -145,7 +196,7 @@
         flex: 1;
     }
 
-    .seta {
+    .menuContainer {
         position: absolute;
         top: 1rem;
         right: 1rem;

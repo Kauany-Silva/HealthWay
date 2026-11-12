@@ -1,7 +1,7 @@
 
 import db from '../db.js';
 
-// Salvar uma vacinação
+// SALVAR UMA VACINAÇÃO
 export const salvarVacinacao = (req, res) => {
     const {
         id_vacina,
@@ -10,7 +10,6 @@ export const salvarVacinacao = (req, res) => {
         idade_na_aplicacao
     } = req.body;
 
-    // Identificação obtida pelo token
     const id_usuario = req.usuario.id_usuario;
 
     if (
@@ -59,7 +58,8 @@ export const salvarVacinacao = (req, res) => {
     );
 };
 
-// Listar vacinações do usuário autenticado
+
+// LISTAR VACINAÇÕES DO USUÁRIO
 export const listarVacinacoes = (req, res) => {
     const id_usuario = req.usuario.id_usuario;
 
@@ -95,6 +95,113 @@ export const listarVacinacoes = (req, res) => {
         return res.status(200).json({
             success: true,
             vacinas: resultado
+        });
+    });
+};
+
+
+// EDITAR UMA VACINAÇÃO
+export const editarVacinacao = (req, res) => {
+    const { id } = req.params;
+
+    const {
+        id_vacina,
+        id_dose,
+        data_aplicacao,
+        idade_na_aplicacao
+    } = req.body;
+
+    const id_usuario = req.usuario.id_usuario;
+
+    if (
+        !id_vacina ||
+        !id_dose ||
+        !data_aplicacao ||
+        !idade_na_aplicacao
+    ) {
+        return res.status(400).json({
+            success: false,
+            message: 'Preencha todos os campos.'
+        });
+    }
+
+    const sql = `
+        UPDATE registros_vacinacao
+        SET
+            id_vacina = ?,
+            id_dose = ?,
+            data_aplicacao = ?,
+            idade_na_aplicacao = ?
+        WHERE id_registro = ? AND id_usuario = ?
+    `;
+
+    db.query(
+        sql,
+        [
+            id_vacina,
+            id_dose,
+            data_aplicacao,
+            idade_na_aplicacao,
+            id,
+            id_usuario
+        ],
+        (err, resultado) => {
+            if (err) {
+                console.error(err);
+
+                return res.status(500).json({
+                    success: false,
+                    message: 'Erro ao editar vacinação.'
+                });
+            }
+
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'Vacinação não encontrada.'
+                });
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: 'Vacinação atualizada com sucesso!'
+            });
+        }
+    );
+};
+
+
+// EXCLUIR UMA VACINAÇÃO
+export const excluirVacinacao = (req, res) => {
+    const { id } = req.params;
+
+    const id_usuario = req.usuario.id_usuario;
+
+    const sql = `
+        DELETE FROM registros_vacinacao
+        WHERE id_registro = ? AND id_usuario = ?
+    `;
+
+    db.query(sql, [id, id_usuario], (err, resultado) => {
+        if (err) {
+            console.error(err);
+
+            return res.status(500).json({
+                success: false,
+                message: 'Erro ao excluir vacinação.'
+            });
+        }
+
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Vacinação não encontrada.'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Vacinação excluída com sucesso!'
         });
     });
 };

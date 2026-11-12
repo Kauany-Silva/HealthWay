@@ -4,13 +4,21 @@ import { useState, useEffect } from 'react';
 import styles from './AdicionarVacina.module.css';
 import Logo from '../../Assets/Imagens/Logo.png';
 
-const AdicionarVacina = ({ fechar, salvar }) => {
+const AdicionarVacina = ({
+    fechar,
+    salvar,
+    vacinaEdicao,
+    editar
+}) => {
     const [vacinas, setVacinas] = useState([]);
     const [doses, setDoses] = useState([]);
 
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
 
+    const modoEdicao = Boolean(vacinaEdicao);
+
+    // Buscar vacinas e tipos de dose
     useEffect(() => {
         const buscarDados = async () => {
             try {
@@ -33,6 +41,7 @@ const AdicionarVacina = ({ fechar, salvar }) => {
             } catch (erro) {
                 console.error(erro);
                 setErro('Não foi possível carregar as vacinas e doses.');
+
             } finally {
                 setCarregando(false);
             }
@@ -41,41 +50,70 @@ const AdicionarVacina = ({ fechar, salvar }) => {
         buscarDados();
     }, []);
 
+    // Formatar data para o campo input date
+    const formatarDataInput = (data) => {
+        if (!data) return '';
+
+        return String(data).slice(0, 10);
+    };
+
+    // Salvar ou editar vacinação
     const handleSubmit = async (evento) => {
         evento.preventDefault();
 
         const formulario = evento.currentTarget;
         const dados = new FormData(formulario);
 
-        const novaVacina = {
+        const dadosVacina = {
             id_vacina: Number(dados.get('vacina')),
             data: dados.get('data'),
             idade: dados.get('idade').trim(),
             id_dose: Number(dados.get('dose'))
         };
 
-        const sucesso = await salvar(novaVacina);
+        try {
+            const sucesso = modoEdicao
+                ? await editar(dadosVacina)
+                : await salvar(dadosVacina);
 
-        if (sucesso) {
-            formulario.reset();
+            if (sucesso) {
+                fechar();
+            }
+
+        } catch (erro) {
+            console.error(erro);
+            setErro('Não foi possível salvar a vacinação.');
         }
     };
 
     return (
         <div className={styles.fundo}>
             <div className={styles.container}>
-                <h2>Adicionar Vacina</h2>
+
+                <h2>
+                    {modoEdicao
+                        ? 'Editar Vacina'
+                        : 'Adicionar Vacina'
+                    }
+                </h2>
 
                 <div className={styles.logo}>
-                    <img src={Logo} alt="Logo Health Way" />
+                    <img
+                        src={Logo}
+                        alt="Logo Health Way"
+                    />
                 </div>
 
                 {carregando ? (
                     <p>Carregando dados...</p>
+
                 ) : erro ? (
                     <p>{erro}</p>
+
                 ) : (
                     <form onSubmit={handleSubmit}>
+
+                        {/* Nome da vacina */}
                         <label htmlFor="vacina">
                             Nome da vacina
                         </label>
@@ -84,7 +122,9 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             id="vacina"
                             name="vacina"
                             required
-                            defaultValue=""
+                            defaultValue={
+                                vacinaEdicao?.id_vacina || ''
+                            }
                         >
                             <option value="" disabled>
                                 Selecione uma vacina
@@ -100,6 +140,7 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             ))}
                         </select>
 
+                        {/* Data da vacinação */}
                         <label htmlFor="data">
                             Data da vacinação
                         </label>
@@ -109,8 +150,12 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             id="data"
                             name="data"
                             required
+                            defaultValue={formatarDataInput(
+                                vacinaEdicao?.data_aplicacao
+                            )}
                         />
 
+                        {/* Idade na vacinação */}
                         <label htmlFor="idade">
                             Idade na vacinação
                         </label>
@@ -121,8 +166,12 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             name="idade"
                             placeholder="Ex.: 2 meses ou 10 anos"
                             required
+                            defaultValue={
+                                vacinaEdicao?.idade_na_aplicacao || ''
+                            }
                         />
 
+                        {/* Tipo de dose */}
                         <label htmlFor="dose">
                             Tipo de dose
                         </label>
@@ -131,7 +180,9 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             id="dose"
                             name="dose"
                             required
-                            defaultValue=""
+                            defaultValue={
+                                vacinaEdicao?.id_dose || ''
+                            }
                         >
                             <option value="" disabled>
                                 Selecione o tipo de dose
@@ -147,7 +198,9 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             ))}
                         </select>
 
+                        {/* Botões */}
                         <div className={styles.acoes}>
+
                             <button
                                 type="button"
                                 onClick={fechar}
@@ -156,11 +209,17 @@ const AdicionarVacina = ({ fechar, salvar }) => {
                             </button>
 
                             <button type="submit">
-                                Salvar vacina
+                                {modoEdicao
+                                    ? 'Salvar alterações'
+                                    : 'Salvar vacina'
+                                }
                             </button>
+
                         </div>
+
                     </form>
                 )}
+
             </div>
         </div>
     );

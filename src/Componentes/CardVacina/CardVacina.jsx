@@ -1,13 +1,18 @@
 
+import { useState } from 'react';
 import styles from './CardVacina.module.css';
 
 import {
     FaSyringe,
     FaCalendarDay,
-    FaUserPlus
+    FaUserPlus,
+    FaEdit,
+    FaTrash
 } from 'react-icons/fa';
 
-const CardVacina = ({ vacina }) => {
+const CardVacina = ({ vacina, onEditar, onExcluir }) => {
+
+    const [menuAberto, setMenuAberto] = useState(false);
 
     if (!vacina) {
         return null;
@@ -92,8 +97,42 @@ const CardVacina = ({ vacina }) => {
                 </div>
             </div>
 
-            <div className={styles.seta}>
-                ›
+            <div className={styles.menuContainer}>
+                <button
+                    type="button"
+                    className={styles.seta}
+                    onClick={() => setMenuAberto(!menuAberto)}
+                    aria-label="Opções da vacina"
+                    aria-expanded={menuAberto}
+                >
+                    ›
+                </button>
+
+                {menuAberto && (
+                    <div className={styles.menu}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setMenuAberto(false);
+                                onEditar?.(vacina);
+                            }}
+                        >
+                            <FaEdit />
+                            Editar vacina
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setMenuAberto(false);
+                                onExcluir?.(vacina);
+                            }}
+                        >
+                            <FaTrash />
+                            Excluir vacina
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
