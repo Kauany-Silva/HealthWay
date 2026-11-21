@@ -6,11 +6,10 @@ export const cadastrarUsuario = async (req, res) => {
     const {
         nome,
         email,
-        endereco,
         senha
     } = req.body;
 
-    // Verifica se todos os campos obrigatórios foram enviados
+    // Verifica os campos obrigatórios
     if (!nome || !email || !senha) {
         return res.status(400).json({
             success: false,
@@ -49,13 +48,13 @@ export const cadastrarUsuario = async (req, res) => {
 
                 const sqlCadastro = `
                     INSERT INTO usuarios
-                    (nome_completo, email, endereco, senha_hash)
-                    VALUES (?, ?, ?, ?)
+                    (nome_completo, email, senha_hash)
+                    VALUES (?, ?, ?)
                 `;
 
                 db.query(
                     sqlCadastro,
-                    [nome, email, endereco || null, senhaHash],
+                    [nome, email, senhaHash],
                     (erro, resultadoCadastro) => {
                         if (erro) {
                             console.error(erro);
@@ -72,6 +71,7 @@ export const cadastrarUsuario = async (req, res) => {
                         });
                     }
                 );
+
             } catch (erro) {
                 console.error(erro);
 
@@ -81,6 +81,7 @@ export const cadastrarUsuario = async (req, res) => {
                 });
             }
         });
+
     } catch (erro) {
         console.error(erro);
 

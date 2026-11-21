@@ -1,3 +1,4 @@
+
 import db from '../db.js';
 
 // Buscar vacinas disponíveis
@@ -10,7 +11,7 @@ export const listarVacinas = (req, res) => {
 
     db.query(sql, (err, resultado) => {
         if (err) {
-            console.error(err);
+            console.error('Erro ao buscar vacinas:', err);
 
             return res.status(500).json({
                 success: false,
@@ -29,13 +30,13 @@ export const listarVacinas = (req, res) => {
 export const listarDoses = (req, res) => {
     const sql = `
         SELECT id_dose, nome
-        FROM tipos_dose
+        FROM doses
         ORDER BY id_dose
     `;
 
     db.query(sql, (err, resultado) => {
         if (err) {
-            console.error(err);
+            console.error('Erro ao buscar doses:', err);
 
             return res.status(500).json({
                 success: false,

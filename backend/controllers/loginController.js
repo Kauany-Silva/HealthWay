@@ -19,7 +19,6 @@ export const realizarLogin = (req, res) => {
             id_usuario,
             nome_completo,
             email,
-            endereco,
             senha_hash,
             tipo_usuario
         FROM usuarios

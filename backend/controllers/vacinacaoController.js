@@ -25,8 +25,8 @@ export const salvarVacinacao = (req, res) => {
     }
 
     const sql = `
-        INSERT INTO registros_vacinacao
-        (id_usuario, id_vacina, id_dose, data_aplicacao, idade_na_aplicacao)
+        INSERT INTO vacinacoes
+        (id_usuario, id_vacina, id_dose, data_vacinacao, idade)
         VALUES (?, ?, ?, ?, ?)
     `;
 
@@ -41,7 +41,7 @@ export const salvarVacinacao = (req, res) => {
         ],
         (err, resultado) => {
             if (err) {
-                console.error(err);
+                console.error('Erro ao salvar vacinação:', err);
 
                 return res.status(500).json({
                     success: false,
@@ -65,26 +65,26 @@ export const listarVacinacoes = (req, res) => {
 
     const sql = `
         SELECT
-            rv.id_registro,
-            rv.id_vacina,
-            v.nome AS nome_vacina,
-            v.descricao,
-            rv.id_dose,
+            v.id_vacinacao AS id_registro,
+            v.id_vacina,
+            va.nome AS nome_vacina,
+            va.descricao,
+            v.id_dose,
             d.nome AS nome_dose,
-            rv.data_aplicacao,
-            rv.idade_na_aplicacao
-        FROM registros_vacinacao rv
-        INNER JOIN vacinas v
-            ON rv.id_vacina = v.id_vacina
-        INNER JOIN tipos_dose d
-            ON rv.id_dose = d.id_dose
-        WHERE rv.id_usuario = ?
-        ORDER BY rv.data_aplicacao DESC
+            v.data_vacinacao AS data_aplicacao,
+            v.idade AS idade_na_aplicacao
+        FROM vacinacoes v
+        INNER JOIN vacinas va
+            ON v.id_vacina = va.id_vacina
+        INNER JOIN doses d
+            ON v.id_dose = d.id_dose
+        WHERE v.id_usuario = ?
+        ORDER BY v.data_vacinacao DESC
     `;
 
     db.query(sql, [id_usuario], (err, resultado) => {
         if (err) {
-            console.error(err);
+            console.error('Erro ao buscar vacinações:', err);
 
             return res.status(500).json({
                 success: false,
@@ -126,13 +126,13 @@ export const editarVacinacao = (req, res) => {
     }
 
     const sql = `
-        UPDATE registros_vacinacao
+        UPDATE vacinacoes
         SET
             id_vacina = ?,
             id_dose = ?,
-            data_aplicacao = ?,
-            idade_na_aplicacao = ?
-        WHERE id_registro = ? AND id_usuario = ?
+            data_vacinacao = ?,
+            idade = ?
+        WHERE id_vacinacao = ? AND id_usuario = ?
     `;
 
     db.query(
@@ -147,7 +147,7 @@ export const editarVacinacao = (req, res) => {
         ],
         (err, resultado) => {
             if (err) {
-                console.error(err);
+                console.error('Erro ao editar vacinação:', err);
 
                 return res.status(500).json({
                     success: false,
@@ -178,13 +178,13 @@ export const excluirVacinacao = (req, res) => {
     const id_usuario = req.usuario.id_usuario;
 
     const sql = `
-        DELETE FROM registros_vacinacao
-        WHERE id_registro = ? AND id_usuario = ?
+        DELETE FROM vacinacoes
+        WHERE id_vacinacao = ? AND id_usuario = ?
     `;
 
     db.query(sql, [id, id_usuario], (err, resultado) => {
         if (err) {
-            console.error(err);
+            console.error('Erro ao excluir vacinação:', err);
 
             return res.status(500).json({
                 success: false,

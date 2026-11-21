@@ -1,3 +1,4 @@
+
 import { AcessoRapido, MenuLateral, Destaques } from "../../Componentes";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
@@ -5,42 +6,49 @@ import Logo from "../../Assets/Imagens/Logo.png";
 import style from "./Dashboard.module.css";
 
 const Dashboard = () => {
-  const usuario = JSON.parse(
-    localStorage.getItem("usuario")
-  );
 
-  const location = useLocation();
+    const usuario = JSON.parse(
+        localStorage.getItem("user") || "null"
+    );
 
-  if (!usuario) {
-    return <Navigate to="/login" replace />;
-  }
+    const primeiroNome = usuario?.nome_completo
+        ?.trim()
+        .split(/\s+/)[0];
 
-  const estaNaCarteira = location.pathname === "/dashboard/vacinacao";
+    const location = useLocation();
 
-  return (
-    <div className={style.Dashboard}>
-      <MenuLateral />
+    if (!usuario) {
+        return <Navigate to="/login" replace />;
+    }
 
-      {estaNaCarteira ? (
-        <Outlet />
-      ) : (
-        <>
-          <div className={style.boasVindas}>
-            <div className={style.logo}>
-              <img src={Logo} alt="Logo Health Way" />
-            </div>
+    const estaNoDashboard = location.pathname === "/dashboard";
 
-            <h1>
-              Bem-vindo, {usuario?.usu_nome}
-            </h1>
-          </div>
+    return (
+        <div className={style.Dashboard}>
 
-          <Destaques />
-          <AcessoRapido />
-        </>
-      )}
-    </div>
-  );
+            <MenuLateral />
+
+            {estaNoDashboard ? (
+                <>
+                    <div className={style.boasVindas}>
+                        <div className={style.logo}>
+                            <img src={Logo} alt="Logo Health Way" />
+                        </div>
+
+                        <h1>
+                            Bem-vindo, {primeiroNome}!
+                        </h1>
+                    </div>
+
+                    <Destaques />
+                    <AcessoRapido />
+                </>
+            ) : (
+                <Outlet />
+            )}
+
+        </div>
+    );
 };
 
 export { Dashboard };

@@ -5,6 +5,7 @@ import usuarioRoutes from './routes/usuarios.js';
 import loginRoutes from './routes/login.js';
 import catalogosRoutes from './routes/catalogos.js';
 import vacinacaoRoutes from './routes/vacinacao.js';
+import consultaRoutes from './routes/consultas.js';
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use('/usuarios', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/catalogos', catalogosRoutes);
 app.use('/vacinacao', vacinacaoRoutes);
+app.use('/consultas', consultaRoutes);
+
 
 app.listen(3001, () => {
     console.log('Servidor rodando');

@@ -8,10 +8,11 @@ import { CadastroPage, LoginPage } from '../Paginas/Autenticacao'
 // Páginas privadas (Dashboard e rotas filhas)
 import { Dashboard } from '../Paginas/Dashboard';
 import { CarteiraVacinacao } from '../Paginas/CarteiraVacinacao';
+import { Consultas } from '../Paginas/Consultas/Consultas';
+
 /* 
 import { Pets } from '../../Pages/Pets';
 import { LocalHospital } from '../../Pages/LocalHospital';
-import { Consultas } from '../../Pages/Consultas';
 import { Medicamentos } from '../../Pages/Medicamentos';
 
 import { NotFound } from '../../Pages/NotFound/NotFound';
@@ -35,9 +36,10 @@ const Rotas = () => {
         <Route element={<RotasPrivadas />}>
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="vacinacao" element={<CarteiraVacinacao />} />
+          <Route path="consultas" element={<Consultas />} />
+
         {/*
         <Route path="hospitais" element={<LocalHospital />} />
-        <Route path="consultas" element={<Consultas />} />
         <Route path="medicamentos" element={<Medicamentos />} />
         <Route path="pets" element={<Pets />} />
         <Route path="noticias" element={<Noticias />} /> */}

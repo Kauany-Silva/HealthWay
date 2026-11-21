@@ -12,7 +12,6 @@ const Cadastro = () => {
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
-        endereco: '',
         senha: '',
     });
 
@@ -57,7 +56,6 @@ const Cadastro = () => {
             setFormData({
                 nome: '',
                 email: '',
-                endereco: '',
                 senha: '',
             });
 
@@ -114,15 +112,6 @@ const Cadastro = () => {
                     />
 
                     <input
-                        type="text"
-                        name="endereco"
-                        placeholder="Endereço"
-                        value={formData.endereco}
-                        onChange={handleChange}
-                        autoComplete="street-address"
-                    />
-
-                    <input
                         type="password"
                         name="senha"
                         placeholder="Senha"
@@ -138,7 +127,7 @@ const Cadastro = () => {
                 </form>
 
                 <p className={styles.link}>
-                    Já tem conta?
+                    Já tem conta?{' '}
                     <a href="/login">
                         Faça login
                     </a>
