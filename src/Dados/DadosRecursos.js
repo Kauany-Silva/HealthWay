@@ -1,5 +1,5 @@
 import { 
-  FaAddressCard, FaHospital, FaCalendarCheck, FaPills, FaPaw, FaNewspaper, FaFileMedical 
+  FaAddressCard, FaCalendarCheck, FaPills, FaPaw, FaNewspaper, FaFileMedical 
 } from 'react-icons/fa6';
 
 const DadosRecursos = [
@@ -7,11 +7,6 @@ const DadosRecursos = [
     icone: FaAddressCard,
     titulo: "Carteira Digital",
     descricao: "Centralize todo o seu histórico vacinal e documentos médicos importantes em um único ambiente seguro e acessível."
-  },
-  {
-    icone: FaHospital,
-    titulo: "Localizar Hospitais",
-    descricao: "Encontre pronto-atendimentos próximos em tempo real e acompanhe a estimativa da fila de espera antes mesmo de sair de casa."
   },
   {
     icone: FaCalendarCheck,
