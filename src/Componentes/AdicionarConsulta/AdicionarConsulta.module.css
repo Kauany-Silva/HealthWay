@@ -1,0 +1,157 @@
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 29, 57, 0.55);
+}
+
+.modal {
+    width: 100%;
+    max-width: 570px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--AzulPolar);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 29, 57, 0.2);
+}
+
+.cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 25px 28px;
+    border-bottom: 1px solid var(--AzulGelo);
+}
+
+.cabecalho span {
+    color: var(--AzulRoyal);
+    font-size: 0.68rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+}
+
+.cabecalho h2 {
+    margin: 7px 0;
+    color: var(--AzulEscuro);
+    font-size: 1.4rem;
+}
+
+.cabecalho p {
+    color: var(--CinzaMedio);
+    font-size: 0.8rem;
+}
+
+.fechar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+    cursor: pointer;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 25px 28px;
+}
+
+.linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    color: var(--AzulEscuro);
+    font-size: 0.82rem;
+    font-weight: bold;
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--AzulGelo);
+    border-radius: 9px;
+    outline: none;
+    background: var(--AzulPolar);
+    color: var(--AzulEscuro);
+    font-family: var(--FonteBase);
+    font-size: 0.82rem;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    border-color: var(--AzulRoyal);
+}
+
+.campo textarea {
+    resize: vertical;
+}
+
+.rodape {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 28px 25px;
+    border-top: 1px solid var(--AzulGelo);
+}
+
+.rodape button {
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-family: var(--FonteBase);
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botaoCancelar {
+    border: 1px solid var(--AzulSuave);
+    background: transparent;
+    color: var(--AzulRoyal);
+}
+
+.botaoSalvar {
+    border: none;
+    background: var(--AzulRoyal);
+    color: var(--AzulPolar);
+}
+
+.botaoSalvar:hover {
+    background: var(--AzulEscuro);
+}
+
+@media (max-width: 500px) {
+    .linha {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho,
+    .conteudo {
+        padding: 20px;
+    }
+
+    .rodape {
+        padding: 18px 20px 20px;
+    }
+}

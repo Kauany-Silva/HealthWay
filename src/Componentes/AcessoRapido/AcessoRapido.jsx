@@ -37,7 +37,7 @@ const AcessoRapido = () => {
 
         <div
             className={style.cartao}
-            onClick={() => navigate("/consultas")}
+            onClick={() => navigate("/dashboard/consultas")}
         >
 
             <div className={style.icone}>

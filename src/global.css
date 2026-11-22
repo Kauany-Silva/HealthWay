@@ -5,12 +5,17 @@
 --AzulVibrante: #007BFF;
 --AzulDog: #1E90FF;
 --AzulBebê: #80BFFF;
---AzulPolar: #E6F2FF;
 --AzulEscuro: #001D39;
 --Cinza: #161616;
 --Verde: #170f2b;
---Vermelho:#E74C3C;
---Amarelo: #F39C12;
+
+/* LAVANDA E LILÁS */
+--Lavanda: #d5c5e8;
+--Lilás: #A895C5;
+
+/* NEUTROS */
+--CinzaMedio: #65758A;
+--AzulPolar: #E6F2FF;
 
 --CorBG: var(--AzulGelo);    /* fundo padrão */
 --CorTexto: var(--AzulEscuro); /* cor texto padrão */

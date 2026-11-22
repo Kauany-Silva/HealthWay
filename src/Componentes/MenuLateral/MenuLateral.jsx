@@ -50,6 +50,11 @@ const MenuLateral = () => {
                     <span>Carteira de Vacinação</span>
                 </Link>
 
+                <Link to="/dashboard/consultas" className={styles.item}>
+                    <FaCalendarCheck />
+                    <span>Consultas</span>
+                </Link>
+
             </nav>
 
             <button

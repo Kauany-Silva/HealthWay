@@ -1,0 +1,119 @@
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
+    padding: 24px;
+    margin-bottom: 18px;
+    background: var(--AzulPolar);
+    border: 1px solid var(--AzulGelo);
+    border-radius: 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--AzulSuave);
+}
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.topo h3 {
+    color: var(--AzulEscuro);
+    font-size: 1.1rem;
+}
+
+.status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+}
+
+.agendada,
+.remarcada {
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+}
+
+.realizada {
+    background: var(--AzulPolar);
+    color: var(--AzulRoyal);
+    border: 1px solid var(--AzulSuave);
+}
+
+.nao_compareceu,
+.cancelada,
+.aguardando_atualizacao {
+    background: var(--AzulBebê);
+    color: var(--AzulEscuro);
+}
+
+.informacoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 28px;
+}
+
+.informacoes p {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--CinzaMedio);
+    font-size: 0.82rem;
+}
+
+.informacoes svg {
+    color: var(--AzulRoyal);
+    font-size: 0.95rem;
+}
+
+.botaoDetalhes {
+    padding: 11px 18px;
+    border: 1px solid var(--AzulRoyal);
+    border-radius: 9px;
+    background: transparent;
+    color: var(--AzulRoyal);
+    font-family: var(--FonteBase);
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.botaoDetalhes:hover {
+    background: var(--AzulRoyal);
+    color: var(--AzulPolar);
+}
+
+@media (max-width: 650px) {
+    .card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .topo {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .botaoDetalhes {
+        width: 100%;
+    }
+}
