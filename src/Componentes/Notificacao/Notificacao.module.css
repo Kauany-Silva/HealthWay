@@ -20,7 +20,7 @@
 }
 
 .sucesso {
-  background: var(--Verde);
+  background: var(--AzulEscuro);
 }
 
 .erro {
@@ -28,7 +28,7 @@
 }
 
 .aviso {
-  background: var(--Amarelo);
+  background: var(--AzulSuave);
 }
 
 @keyframes aparecer {

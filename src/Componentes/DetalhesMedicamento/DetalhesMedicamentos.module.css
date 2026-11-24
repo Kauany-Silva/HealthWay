@@ -1,3 +1,4 @@
+
 .overlay {
     position: fixed;
     inset: 0;
@@ -134,6 +135,26 @@
 
 .botaoEditar:hover {
     background: var(--AzulBebê);
+}
+
+.botaoConcluir {
+    border: 1px solid var(--AzulRoyal);
+    background: var(--AzulRoyal);
+    color: var(--AzulPolar);
+}
+
+.botaoConcluir:hover {
+    background: var(--AzulEscuro);
+}
+
+.botaoInterromper {
+    border: 1px solid var(--AzulSuave);
+    background: var(--AzulBebê);
+    color: var(--AzulEscuro);
+}
+
+.botaoInterromper:hover {
+    background: var(--AzulGelo);
 }
 
 .botaoExcluir {

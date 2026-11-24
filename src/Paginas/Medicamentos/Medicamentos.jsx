@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 
 import {
@@ -121,6 +122,47 @@ const Medicamentos = () => {
     };
 
 
+    // ATUALIZAR STATUS DO MEDICAMENTO
+    const atualizarStatusMedicamento = async (id, status) => {
+
+        const mensagem = status === 'concluido'
+            ? 'Deseja marcar este medicamento como concluído?'
+            : 'Deseja marcar este medicamento como interrompido?';
+
+        if (!window.confirm(mensagem)) {
+            return;
+        }
+
+        try {
+            const resposta = await fetch(
+                `http://localhost:3001/medicamentos/${id}/status`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ status })
+                }
+            );
+
+            const dados = await lerResposta(resposta);
+
+            if (!resposta.ok) {
+                throw new Error(dados.message || 'Erro ao atualizar status.');
+            }
+
+            setMedicamentoSelecionado(null);
+
+            await buscarMedicamentos();
+
+        } catch (erro) {
+            console.error(erro);
+            setErro(erro.message);
+        }
+    };
+
+
     // EXCLUIR MEDICAMENTO
     const excluirMedicamento = async (id) => {
 
@@ -234,6 +276,7 @@ const Medicamentos = () => {
                     fechar={() => setMedicamentoSelecionado(null)}
                     editar={abrirEdicao}
                     excluir={excluirMedicamento}
+                    atualizarStatus={atualizarStatusMedicamento}
                 />
             )}
 

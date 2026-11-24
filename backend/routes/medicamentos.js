@@ -4,7 +4,8 @@ import {
     cadastrarMedicamento,
     listarMedicamentos,
     editarMedicamento,
-    excluirMedicamento
+    excluirMedicamento,
+    atualizarStatusMedicamento
 } from '../controllers/medicamentoController.js';
 
 import { autenticar } from '../middlewares/autenticar.js';
@@ -22,5 +23,8 @@ router.put('/:id', autenticar, editarMedicamento);
 
 // Excluir medicamento
 router.delete('/:id', autenticar, excluirMedicamento);
+
+// Atualizar status do medicamento
+router.patch('/:id/status', autenticar, atualizarStatusMedicamento);
 
 export default router;

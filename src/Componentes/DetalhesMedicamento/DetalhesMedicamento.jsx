@@ -1,3 +1,4 @@
+
 import {
     FaPills,
     FaCalendarAlt,
@@ -5,7 +6,9 @@ import {
     FaFileAlt,
     FaTimes,
     FaEdit,
-    FaTrash
+    FaTrash,
+    FaCheckCircle,
+    FaBan
 } from 'react-icons/fa';
 
 import style from './DetalhesMedicamentos.module.css';
@@ -14,7 +17,8 @@ const DetalhesMedicamento = ({
     medicamento,
     fechar,
     editar,
-    excluir
+    excluir,
+    atualizarStatus
 }) => {
 
     const diasSemana = {
@@ -129,6 +133,24 @@ const DetalhesMedicamento = ({
                         >
                             <FaEdit />
                             Editar medicamento
+                        </button>
+
+                        <button
+                            type="button"
+                            className={style.botaoConcluir}
+                            onClick={() => atualizarStatus(medicamento.id_medicamento, 'concluido')}
+                        >
+                            <FaCheckCircle />
+                            Marcar como concluído
+                        </button>
+
+                        <button
+                            type="button"
+                            className={style.botaoInterromper}
+                            onClick={() => atualizarStatus(medicamento.id_medicamento, 'interrompido')}
+                        >
+                            <FaBan />
+                            Marcar como interrompido
                         </button>
 
                         <button

@@ -371,3 +371,58 @@ export const excluirMedicamento = (req, res) => {
         });
     });
 };
+
+
+// Atualizar status do medicamento
+export const atualizarStatusMedicamento = (req, res) => {
+
+    const idUsuario = req.usuario.id_usuario;
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const statusPermitidos = ['concluido', 'interrompido'];
+
+    if (!statusPermitidos.includes(status)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Status inválido.'
+        });
+    }
+
+    const sql = `
+        UPDATE medicamentos
+        SET status = ?
+        WHERE id_medicamento = ?
+        AND id_usuario = ?
+    `;
+
+    db.query(sql, [status, id, idUsuario], (erro, resultado) => {
+
+        console.log('STATUS RECEBIDO:', status);
+        console.log('ID MEDICAMENTO:', id);
+        console.log('ID USUÁRIO:', idUsuario);
+        console.log('ERRO:', erro);
+        console.log('RESULTADO:', resultado);
+
+        if (erro) {
+            console.error('Erro ao atualizar status:', erro);
+
+            return res.status(500).json({
+                success: false,
+                message: 'Erro ao atualizar status do medicamento.'
+            });
+        }
+
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Medicamento não encontrado.'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Status atualizado com sucesso!'
+        });
+    });
+};
