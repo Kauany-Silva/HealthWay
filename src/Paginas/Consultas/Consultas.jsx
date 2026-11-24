@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import {
     CabecalhoConsultas,
-    Resumo,
+    ResumoConsultas,
     Abas,
     CardConsulta,
     DetalhesConsulta,
@@ -167,7 +167,7 @@ const Consultas = () => {
 
             <CabecalhoConsultas abrirModal={abrirNovaConsulta} />
 
-            <Resumo consultas={consultas} />
+            <ResumoConsultas consultas={consultas} />
 
             <Abas
                 abaAtiva={abaAtiva}

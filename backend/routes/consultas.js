@@ -12,16 +12,16 @@ import { autenticar } from '../middlewares/autenticar.js';
 
 const router = express.Router();
 
-// CADASTRAR CONSULTA
+// Cadastrar consulta
 router.post('/', autenticar, salvarConsulta);
 
-// LISTAR CONSULTAS
+// Listar consultas
 router.get('/', autenticar, listarConsultas);
 
-// EDITAR CONSULTA
+// Editar consulta
 router.put('/:id', autenticar, editarConsulta);
 
-// CONCLUIR OU CANCELAR CONSULTA
+// Concluir ou cancelar consulta
 router.patch('/:id/status', autenticar, atualizarStatusConsulta);
 
 export default router;

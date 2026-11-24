@@ -1,0 +1,185 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 29, 57, 0.55);
+}
+
+.modal {
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--AzulPolar);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 29, 57, 0.2);
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 28px;
+    border-bottom: 1px solid var(--AzulGelo);
+}
+
+.cabecalho span,
+.informacao span {
+    color: var(--CinzaMedio);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.cabecalho h2 {
+    margin-top: 7px;
+    color: var(--AzulEscuro);
+    font-size: 1.35rem;
+}
+
+.fechar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 28px;
+}
+
+.tituloMedicamento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--AzulGelo);
+}
+
+.tituloMedicamento h3 {
+    color: var(--AzulEscuro);
+    font-size: 1.15rem;
+}
+
+.status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+    font-size: 0.72rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.informacao {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.informacao > svg {
+    margin-top: 3px;
+    color: var(--AzulRoyal);
+    font-size: 1.1rem;
+}
+
+.informacao p {
+    margin-top: 5px;
+    color: var(--AzulEscuro);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 28px 22px;
+}
+
+.acoes button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border-radius: 9px;
+    font-family: var(--FonteBase);
+    font-size: 0.78rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botaoEditar {
+    border: 1px solid var(--AzulSuave);
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+}
+
+.botaoEditar:hover {
+    background: var(--AzulBebê);
+}
+
+.botaoExcluir {
+    border: 1px solid var(--AzulSuave);
+    background: transparent;
+    color: var(--AzulRoyal);
+}
+
+.botaoExcluir:hover {
+    background: var(--AzulGelo);
+}
+
+.rodape {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 28px 25px;
+    border-top: 1px solid var(--AzulGelo);
+}
+
+.rodape button {
+    padding: 11px 25px;
+    border: none;
+    border-radius: 9px;
+    background: var(--AzulRoyal);
+    color: var(--AzulPolar);
+    font-family: var(--FonteBase);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rodape button:hover {
+    background: var(--AzulEscuro);
+}
+
+@media (max-width: 500px) {
+    .tituloMedicamento {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cabecalho,
+    .conteudo {
+        padding: 20px;
+    }
+
+    .acoes {
+        padding: 0 20px 20px;
+    }
+}

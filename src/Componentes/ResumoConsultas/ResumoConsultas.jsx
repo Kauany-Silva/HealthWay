@@ -5,9 +5,9 @@ import {
     FaCalendarWeek
 } from 'react-icons/fa';
 
-import style from './Resumo.module.css';
+import style from './ResumoConsultas.module.css';
 
-const Resumo = ({ consultas = [] }) => {
+const ResumoConsultas = ({ consultas = [] }) => {
 
     // DATA ATUAL
     const hoje = new Date();
@@ -110,4 +110,4 @@ const Resumo = ({ consultas = [] }) => {
     );
 };
 
-export { Resumo };
+export { ResumoConsultas };

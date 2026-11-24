@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.erro {
+    padding: 15px 18px;
+    border-radius: 10px;
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+    font-size: 0.9rem;
+}
+
+.carregando,
+.vazio {
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--CinzaMedio);
+    font-family: var(--FonteBase);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        gap: 20px;
+    }
+}

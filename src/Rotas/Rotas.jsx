@@ -1,57 +1,39 @@
+
 import { Routes, Route } from 'react-router-dom';
 import { RotasPrivadas } from './RotasPrivadas';
 
 // Páginas públicas
 import { Landing } from '../Paginas/Landing';
-import { CadastroPage, LoginPage } from '../Paginas/Autenticacao'
+import { CadastroPage, LoginPage } from '../Paginas/Autenticacao';
 
-// Páginas privadas (Dashboard e rotas filhas)
+// Páginas privadas
 import { Dashboard } from '../Paginas/Dashboard';
 import { CarteiraVacinacao } from '../Paginas/CarteiraVacinacao';
 import { Consultas } from '../Paginas/Consultas/Consultas';
-
-/* 
-import { Pets } from '../../Pages/Pets';
-import { LocalHospital } from '../../Pages/LocalHospital';
-import { Medicamentos } from '../../Pages/Medicamentos';
-
-import { NotFound } from '../../Pages/NotFound/NotFound';
-import { Noticias } from '../../Pages/Noticias/Noticias';
-*/
-
-
+import { Medicamentos } from '../Paginas/Medicamentos/Medicamentos';
 
 const Rotas = () => {
-  return (
+    return (
+        <Routes>
 
-    <Routes>  
+            {/* Rotas públicas */}
+            <Route path="/" element={<Landing />} />
+            <Route path="/cadastro" element={<CadastroPage />} />
+            <Route path="/login" element={<LoginPage />} />
 
-        {/* Rotas públicas */}  
-        <Route path="/" element={<Landing />} />
-        <Route path="/cadastro" element={<CadastroPage />} />
-        <Route path="/login" element={<LoginPage />} />
+            {/* Rotas privadas */}
+            <Route element={<RotasPrivadas />}>
 
-        {/* Rotas privadas */} 
-        
-        <Route element={<RotasPrivadas />}>
-      <Route path="/dashboard" element={<Dashboard />}>
-        <Route path="vacinacao" element={<CarteiraVacinacao />} />
-          <Route path="consultas" element={<Consultas />} />
+                <Route path="/dashboard" element={<Dashboard />}>
+                    <Route path="vacinacao" element={<CarteiraVacinacao />} />
+                    <Route path="consultas" element={<Consultas />} />
+                    <Route path="medicamentos" element={<Medicamentos />} />
+                </Route>
 
-        {/*
-        <Route path="hospitais" element={<LocalHospital />} />
-        <Route path="medicamentos" element={<Medicamentos />} />
-        <Route path="pets" element={<Pets />} />
-        <Route path="noticias" element={<Noticias />} /> */}
-       </Route>
-      </Route>
+            </Route>
 
-
-       {/*<Route path="*" element={<NotFound />} /> */}
-
-    </Routes>
-    
-  );
+        </Routes>
+    );
 };
 
 export { Rotas };

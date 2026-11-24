@@ -7,6 +7,7 @@ import loginRoutes from './routes/login.js';
 import catalogosRoutes from './routes/catalogos.js';
 import vacinacaoRoutes from './routes/vacinacao.js';
 import consultaRoutes from './routes/consultas.js';
+import medicamentoRoutes from './routes/medicamentos.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/login', loginRoutes);
 app.use('/catalogos', catalogosRoutes);
 app.use('/vacinacao', vacinacaoRoutes);
 app.use('/consultas', consultaRoutes);
+app.use('/medicamentos', medicamentoRoutes);
 
 
 app.listen(3001, () => {
