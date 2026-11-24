@@ -8,7 +8,7 @@ import {
     CardConsulta,
     DetalhesConsulta,
     AdicionarConsulta
-} from "../../Componentes";
+} from '../../Componentes';
 
 import style from './Consultas.module.css';
 
@@ -19,18 +19,17 @@ const Consultas = () => {
     const [erro, setErro] = useState('');
 
     const [modalAberto, setModalAberto] = useState(false);
-    const [abaAtiva, setAbaAtiva] = useState('agendadas');
+    const [consultaEmEdicao, setConsultaEmEdicao] = useState(null);
     const [consultaSelecionada, setConsultaSelecionada] = useState(null);
 
-    // BUSCAR CONSULTAS NO BACKEND
+    const [abaAtiva, setAbaAtiva] = useState('agendadas');
+
     const buscarConsultas = async () => {
-
         try {
-
             const resposta = await fetch('http://localhost:3001/consultas', {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
 
@@ -40,17 +39,15 @@ const Consultas = () => {
                 throw new Error(dados.message || 'Erro ao buscar consultas.');
             }
 
-            setConsultas(dados.consultas);
+            setConsultas(dados.consultas || []);
+            setErro('');
 
         } catch (erro) {
-
             console.error(erro);
             setErro(erro.message);
 
         } finally {
-
             setCarregando(false);
-
         }
     };
 
@@ -58,65 +55,117 @@ const Consultas = () => {
         buscarConsultas();
     }, []);
 
-    // CADASTRAR NOVA CONSULTA
-    const salvarConsulta = async (novaConsulta) => {
 
+    // ABRIR FORMULÁRIO PARA NOVA CONSULTA
+    const abrirNovaConsulta = () => {
+        setConsultaEmEdicao(null);
+        setModalAberto(true);
+    };
+
+
+    // ABRIR FORMULÁRIO PARA EDITAR
+    const abrirEdicao = (consulta) => {
+        setConsultaSelecionada(null);
+        setConsultaEmEdicao(consulta);
+        setModalAberto(true);
+    };
+
+
+    // SALVAR OU EDITAR CONSULTA
+    const salvarConsulta = async (dadosConsulta) => {
         try {
+            const editando = Boolean(consultaEmEdicao);
 
-            const resposta = await fetch('http://localhost:3001/consultas', {
-                method: 'POST',
+            const url = editando
+                ? `http://localhost:3001/consultas/${consultaEmEdicao.id_consulta}`
+                : 'http://localhost:3001/consultas';
+
+            const resposta = await fetch(url, {
+                method: editando ? 'PUT' : 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
                 },
-                body: JSON.stringify(novaConsulta)
+                body: JSON.stringify(dadosConsulta)
             });
 
             const dados = await resposta.json();
 
             if (!resposta.ok) {
-                throw new Error(dados.message || 'Erro ao cadastrar consulta.');
+                throw new Error(dados.message || 'Erro ao salvar consulta.');
             }
 
             setModalAberto(false);
-            setErro('');
+            setConsultaEmEdicao(null);
+
             await buscarConsultas();
 
         } catch (erro) {
-
             console.error(erro);
             setErro(erro.message);
-
         }
     };
 
-    // FILTRAR CONSULTAS DE ACORDO COM A ABA
-    const consultasFiltradas = consultas.filter((consulta) => {
 
+    // CONCLUIR OU CANCELAR CONSULTA
+    const atualizarStatus = async (id, novoStatus) => {
+
+        const mensagem = novoStatus === 'realizada'
+            ? 'Deseja realmente marcar esta consulta como concluída?'
+            : 'Deseja realmente cancelar esta consulta?';
+
+        if (!window.confirm(mensagem)) {
+            return;
+        }
+
+        try {
+            const resposta = await fetch(
+                `http://localhost:3001/consultas/${id}/status`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ status: novoStatus })
+                }
+            );
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(dados.message || 'Erro ao atualizar consulta.');
+            }
+
+            setConsultaSelecionada(null);
+
+            await buscarConsultas();
+
+        } catch (erro) {
+            console.error(erro);
+            setErro(erro.message);
+        }
+    };
+
+
+    // FILTRAR CONSULTAS DAS ABAS
+    const consultasFiltradas = consultas.filter((consulta) => {
         if (abaAtiva === 'agendadas') {
             return ['agendada', 'remarcada'].includes(consulta.status);
         }
 
-        return ['realizada', 'nao_compareceu', 'cancelada'].includes(consulta.status);
-
+        return [
+            'realizada',
+            'nao_compareceu',
+            'cancelada'
+        ].includes(consulta.status);
     });
 
-    // ABRIR DETALHES
-    const abrirDetalhes = (consulta) => {
-        setConsultaSelecionada(consulta);
-    };
-
-    // FECHAR DETALHES
-    const fecharDetalhes = () => {
-        setConsultaSelecionada(null);
-    };
 
     return (
         <main className={style.container}>
 
-            <CabecalhoConsultas
-                abrirModal={() => setModalAberto(true)}
-            />
+            <CabecalhoConsultas abrirModal={abrirNovaConsulta} />
 
             <Resumo consultas={consultas} />
 
@@ -125,12 +174,18 @@ const Consultas = () => {
                 setAbaAtiva={setAbaAtiva}
             />
 
-            {erro && <p>{erro}</p>}
+            {erro && (
+                <p className={style.erro}>
+                    {erro}
+                </p>
+            )}
 
-            {carregando && <p>Carregando consultas...</p>}
+            {carregando && (
+                <p>Carregando consultas...</p>
+            )}
 
             {!carregando && !erro && consultasFiltradas.length === 0 && (
-                <p>
+                <p className={style.vazio}>
                     {abaAtiva === 'agendadas'
                         ? 'Você não possui consultas agendadas.'
                         : 'Seu histórico de consultas está vazio.'}
@@ -138,26 +193,33 @@ const Consultas = () => {
             )}
 
             {!carregando && !erro && consultasFiltradas.map((consulta) => (
-
                 <CardConsulta
                     key={consulta.id_consulta}
                     consulta={consulta}
-                    abrirDetalhes={abrirDetalhes}
+                    abrirDetalhes={setConsultaSelecionada}
                 />
-
             ))}
+
 
             {modalAberto && (
                 <AdicionarConsulta
-                    fechar={() => setModalAberto(false)}
+                    fechar={() => {
+                        setModalAberto(false);
+                        setConsultaEmEdicao(null);
+                    }}
                     salvar={salvarConsulta}
+                    consultaInicial={consultaEmEdicao}
                 />
             )}
+
 
             {consultaSelecionada && (
                 <DetalhesConsulta
                     consulta={consultaSelecionada}
-                    fechar={fecharDetalhes}
+                    fechar={() => setConsultaSelecionada(null)}
+                    editar={abrirEdicao}
+                    concluir={(id) => atualizarStatus(id, 'realizada')}
+                    cancelar={(id) => atualizarStatus(id, 'cancelada')}
                 />
             )}
 

@@ -1,6 +1,6 @@
 import {
   FaCalendar,
-  FaHospital,
+  FaCapsules,
   FaSyringe
 } from "react-icons/fa6";
 
@@ -57,12 +57,12 @@ const AcessoRapido = () => {
         >
 
             <div className={style.icone}>
-                <FaHospital />
+                <FaCapsules />
             </div>
 
             <div className={style.info}>
-                <h3>Hospitais</h3>
-                <p>Encontre hospitais próximos.</p>
+                <h3>Medicamentos</h3>
+                <p>Monitore os seus tratamentos.</p>
             </div>
 
         </div>

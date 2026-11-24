@@ -11,6 +11,7 @@
     background-color: var(--AzulPolar);
     border: 1px solid var(--AzulRoyal);
     transition: box-shadow 0.2s ease;
+  border-radius: 1.5rem;
 }
 
 .card:hover {

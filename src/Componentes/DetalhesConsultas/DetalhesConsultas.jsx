@@ -1,9 +1,25 @@
 
-import { FaCalendarAlt, FaClock, FaUserMd, FaMapMarkerAlt, FaTimes, FaFileAlt } from 'react-icons/fa';
+import {
+    FaCalendarAlt,
+    FaClock,
+    FaUserMd,
+    FaMapMarkerAlt,
+    FaTimes,
+    FaFileAlt,
+    FaEdit,
+    FaCheck,
+    FaBan
+} from 'react-icons/fa';
 
 import style from './DetalhesConsultas.module.css';
 
-const DetalhesConsulta = ({ consulta, fechar }) => {
+const DetalhesConsulta = ({
+    consulta,
+    fechar,
+    editar,
+    concluir,
+    cancelar
+}) => {
 
     const formatarData = (data) => {
         return new Date(data).toLocaleDateString('pt-BR', {
@@ -14,7 +30,7 @@ const DetalhesConsulta = ({ consulta, fechar }) => {
     const statusFormatados = {
         agendada: 'Agendada',
         remarcada: 'Remarcada',
-        realizada: 'Realizada',
+        realizada: 'Concluída',
         nao_compareceu: 'Não compareceu',
         cancelada: 'Cancelada',
         aguardando_atualizacao: 'Aguardando atualização'
@@ -22,16 +38,15 @@ const DetalhesConsulta = ({ consulta, fechar }) => {
 
     if (!consulta) return null;
 
+    const podeAlterar = ['agendada', 'remarcada'].includes(consulta.status);
+
     return (
         <div className={style.overlay} onClick={fechar}>
-
             <section
                 className={style.modal}
                 onClick={(evento) => evento.stopPropagation()}
             >
-
                 <div className={style.cabecalho}>
-
                     <div>
                         <span>CONSULTA</span>
                         <h2>Detalhes da consulta</h2>
@@ -45,11 +60,9 @@ const DetalhesConsulta = ({ consulta, fechar }) => {
                     >
                         <FaTimes />
                     </button>
-
                 </div>
 
                 <div className={style.conteudo}>
-
                     <div className={style.tituloConsulta}>
                         <h3>{consulta.tipo}</h3>
 
@@ -92,7 +105,6 @@ const DetalhesConsulta = ({ consulta, fechar }) => {
 
                     <div className={style.observacoes}>
                         <FaFileAlt />
-
                         <div>
                             <span>Observações</span>
                             <p>
@@ -100,20 +112,45 @@ const DetalhesConsulta = ({ consulta, fechar }) => {
                             </p>
                         </div>
                     </div>
-
                 </div>
 
+                {podeAlterar && (
+                    <div className={style.acoes}>
+                        <button
+                            type="button"
+                            className={style.botaoEditar}
+                            onClick={() => editar(consulta)}
+                        >
+                            <FaEdit />
+                            Editar consulta
+                        </button>
+
+                        <button
+                            type="button"
+                            className={style.botaoConcluir}
+                            onClick={() => concluir(consulta.id_consulta)}
+                        >
+                            <FaCheck />
+                            Concluir
+                        </button>
+
+                        <button
+                            type="button"
+                            className={style.botaoCancelarConsulta}
+                            onClick={() => cancelar(consulta.id_consulta)}
+                        >
+                            <FaBan />
+                            Cancelar consulta
+                        </button>
+                    </div>
+                )}
+
                 <div className={style.rodape}>
-                    <button
-                        type="button"
-                        onClick={fechar}
-                    >
+                    <button type="button" onClick={fechar}>
                         Fechar
                     </button>
                 </div>
-
             </section>
-
         </div>
     );
 };

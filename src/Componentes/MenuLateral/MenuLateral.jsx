@@ -6,8 +6,7 @@ import {
     FaHome,
     FaSyringe,
     FaCalendarCheck,
-    FaPills,
-    FaHospital,
+    FaCapsules,
     FaNewspaper,
     FaFileMedical,
     FaPaw,
@@ -55,6 +54,25 @@ const MenuLateral = () => {
                     <span>Consultas</span>
                 </Link>
 
+                <Link to="/dashboard/medicamentos" className={styles.item}>
+                    <FaCapsules />
+                    <span>Medicamentos</span>
+                </Link> 
+
+                <Link to="/dashboard/exames" className={styles.item}>
+                    <FaFileMedical />
+                    <span>Exames</span>
+                </Link> 
+
+                <Link to="/dashboard/pets" className={styles.item}>
+                    <FaPaw />
+                    <span>Pets</span>
+                </Link> 
+
+                <Link to="/dashboard/Notícias" className={styles.item}>
+                    <FaNewspaper />
+                    <span>Notícias</span>
+                </Link> 
             </nav>
 
             <button

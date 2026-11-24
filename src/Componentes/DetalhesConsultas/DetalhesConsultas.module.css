@@ -109,6 +109,57 @@
     line-height: 1.5;
 }
 
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 28px 22px;
+}
+
+.acoes button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border-radius: 9px;
+    font-family: var(--FonteBase);
+    font-size: 0.78rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botaoEditar {
+    border: 1px solid var(--AzulSuave);
+    background: var(--AzulGelo);
+    color: var(--AzulRoyal);
+}
+
+.botaoEditar:hover {
+    background: var(--AzulBebê);
+}
+
+.botaoConcluir {
+    border: none;
+    background: var(--AzulRoyal);
+    color: var(--AzulPolar);
+}
+
+.botaoConcluir:hover {
+    background: var(--AzulEscuro);
+}
+
+.botaoCancelarConsulta {
+    border: 1px solid var(--AzulSuave);
+    background: transparent;
+    color: var(--AzulRoyal);
+}
+
+.botaoCancelarConsulta:hover {
+    background: var(--AzulGelo);
+}
+
 .rodape {
     display: flex;
     justify-content: flex-end;
@@ -141,4 +192,9 @@
     .conteudo {
         padding: 20px;
     }
+
+    .acoes {
+        padding: 0 20px 20px;
+    }
 }
+    

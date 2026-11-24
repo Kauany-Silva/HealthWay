@@ -4,15 +4,17 @@ import { FaTimes } from 'react-icons/fa';
 
 import style from './AdicionarConsulta.module.css';
 
-const AdicionarConsulta = ({ fechar, salvar }) => {
+const AdicionarConsulta = ({ fechar, salvar, consultaInicial = null }) => {
 
     const [formulario, setFormulario] = useState({
-        tipo: '',
-        data: '',
-        hora: '',
-        profissional: '',
-        local: '',
-        observacoes: ''
+        tipo: consultaInicial?.tipo || '',
+        data: consultaInicial?.data
+            ? String(consultaInicial.data).slice(0, 10)
+            : '',
+        hora: consultaInicial?.hora?.slice(0, 5) || '',
+        profissional: consultaInicial?.profissional || '',
+        local: consultaInicial?.local || '',
+        observacoes: consultaInicial?.observacoes || ''
     });
 
     const atualizarCampo = (evento) => {
@@ -29,19 +31,23 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
         salvar(formulario);
     };
 
+    const editando = Boolean(consultaInicial);
+
     return (
         <div className={style.overlay} onClick={fechar}>
-
             <section
                 className={style.modal}
                 onClick={(evento) => evento.stopPropagation()}
             >
-
                 <header className={style.cabecalho}>
                     <div>
                         <span>AGENDA</span>
-                        <h2>Nova consulta</h2>
-                        <p>Preencha as informações para agendar sua consulta.</p>
+                        <h2>{editando ? 'Editar consulta' : 'Nova consulta'}</h2>
+                        <p>
+                            {editando
+                                ? 'Atualize as informações da sua consulta.'
+                                : 'Preencha as informações para agendar sua consulta.'}
+                        </p>
                     </div>
 
                     <button
@@ -55,12 +61,9 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
                 </header>
 
                 <form onSubmit={enviarFormulario}>
-
                     <div className={style.conteudo}>
-
                         <div className={style.campo}>
                             <label htmlFor="tipo">Tipo de consulta</label>
-
                             <input
                                 type="text"
                                 id="tipo"
@@ -73,10 +76,8 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
                         </div>
 
                         <div className={style.linha}>
-
                             <div className={style.campo}>
                                 <label htmlFor="data">Data</label>
-
                                 <input
                                     type="date"
                                     id="data"
@@ -90,7 +91,6 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
 
                             <div className={style.campo}>
                                 <label htmlFor="hora">Horário</label>
-
                                 <input
                                     type="time"
                                     id="hora"
@@ -100,12 +100,10 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
                                     required
                                 />
                             </div>
-
                         </div>
 
                         <div className={style.campo}>
                             <label htmlFor="profissional">Profissional</label>
-
                             <input
                                 type="text"
                                 id="profissional"
@@ -119,7 +117,6 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
 
                         <div className={style.campo}>
                             <label htmlFor="local">Local</label>
-
                             <input
                                 type="text"
                                 id="local"
@@ -132,7 +129,6 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
 
                         <div className={style.campo}>
                             <label htmlFor="observacoes">Observações</label>
-
                             <textarea
                                 id="observacoes"
                                 name="observacoes"
@@ -142,7 +138,6 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
                                 rows="3"
                             />
                         </div>
-
                     </div>
 
                     <footer className={style.rodape}>
@@ -158,14 +153,11 @@ const AdicionarConsulta = ({ fechar, salvar }) => {
                             type="submit"
                             className={style.botaoSalvar}
                         >
-                            Salvar consulta
+                            {editando ? 'Salvar alterações' : 'Salvar consulta'}
                         </button>
                     </footer>
-
                 </form>
-
             </section>
-
         </div>
     );
 };
