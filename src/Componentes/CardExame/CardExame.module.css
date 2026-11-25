@@ -1,0 +1,80 @@
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--AzulPolar);
+    border: 1px solid var(--AzulGelo);
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    border-color: var(--AzulSuave);
+}
+
+.icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: var(--AzulGelo);
+    color: var(--AzulRoyal);
+    font-size: 20px;
+}
+
+.informacoes {
+    flex: 1;
+}
+
+.informacoes h3 {
+    color: var(--AzulEscuro);
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.informacoes p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--CinzaMedio);
+    font-size: 13px;
+}
+
+.botaoDetalhes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--AzulPolar);
+    color: var(--AzulRoyal);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botaoDetalhes:hover {
+    background-color: var(--AzulGelo);
+}
+
+@media (max-width: 550px) {
+    .card {
+        flex-wrap: wrap;
+    }
+
+    .informacoes {
+        min-width: 150px;
+    }
+
+    .botaoDetalhes {
+        width: 100%;
+        justify-content: center;
+    }
+}
+    

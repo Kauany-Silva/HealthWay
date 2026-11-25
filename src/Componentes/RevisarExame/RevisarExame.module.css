@@ -1,0 +1,154 @@
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 29, 57, 0.55);
+    z-index: 1000;
+}
+
+.modal {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    background-color: var(--AzulPolar);
+    border-radius: 14px;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+
+.cabecalho h2 {
+    color: var(--AzulEscuro);
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.cabecalho p {
+    color: var(--CinzaMedio);
+    font-size: 13px;
+}
+
+.cabecalho button {
+    border: none;
+    background: transparent;
+    color: var(--CinzaMedio);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: var(--AzulGelo);
+    color: var(--AzulRoyal);
+}
+
+.aviso svg {
+    min-width: 17px;
+    margin-top: 2px;
+}
+
+.aviso p {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.arquivo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--AzulRoyal);
+    font-weight: 600;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.campo label {
+    color: var(--AzulEscuro);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo textarea {
+    width: 100%;
+    min-height: 220px;
+    padding: 14px;
+    resize: vertical;
+    border: 1px solid var(--AzulGelo);
+    border-radius: 8px;
+    outline: none;
+    background-color: var(--AzulGelo);
+    color: var(--AzulEscuro);
+    font-family: var(--FonteBase);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.campo textarea:focus {
+    border-color: var(--AzulRoyal);
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.botaoCancelar,
+.botaoSalvar {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botaoCancelar {
+    background-color: var(--AzulGelo);
+    color: var(--AzulEscuro);
+}
+
+.botaoSalvar {
+    background-color: var(--AzulRoyal);
+    color: var(--AzulPolar);
+}
+
+.botaoSalvar:hover {
+    background-color: var(--AzulEscuro);
+}
+
+@media (max-width: 500px) {
+    .modal {
+        padding: 20px;
+    }
+
+    .acoes {
+        flex-direction: column-reverse;
+    }
+
+    .acoes button {
+        width: 100%;
+    }
+}

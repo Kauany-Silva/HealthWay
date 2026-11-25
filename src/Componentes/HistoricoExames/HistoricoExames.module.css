@@ -1,0 +1,54 @@
+
+.historico {
+    margin-bottom: 30px;
+}
+
+.cabecalho {
+    margin-bottom: 20px;
+}
+
+.cabecalho h2 {
+    color: var(--AzulEscuro);
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.cabecalho p {
+    color: var(--CinzaMedio);
+    font-size: 14px;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px 20px;
+    background-color: var(--AzulPolar);
+    border: 1px dashed var(--AzulBebê);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.vazio svg {
+    color: var(--AzulSuave);
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.vazio h3 {
+    color: var(--AzulEscuro);
+    font-size: 16px;
+}
+
+.vazio p {
+    color: var(--CinzaMedio);
+    font-size: 13px;
+}

@@ -1,0 +1,46 @@
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.informacoes h1 {
+    font-size: 28px;
+    color: var(--AzulEscuro);
+    margin-bottom: 8px;
+}
+
+.informacoes p {
+    font-size: 14px;
+    color: var(--AzulEscuro);
+}
+
+.botaoAdicionar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--AzulRoyal);
+    color: var(--AzulPolar);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botaoAdicionar:hover {
+    background-color: var(--AzulEscuro);
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
